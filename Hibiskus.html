@@ -1,0 +1,194 @@
+<!--  
+  Author: @F  
+  Created: 2026  
+-->  
+<!DOCTYPE html>  
+<html lang="de">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Hibiskus</title>  
+  <style>  
+    body {  
+      margin: 0;  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      min-height: 100vh;  
+      background: radial-gradient(ellipse at center, #1c1c1c 0%, #0a0a0a 100%);  
+    }  
+  
+    .hibiskus {  
+      position: relative;  
+      width: 320px;  
+      height: 320px;  
+      animation: sway 5s ease-in-out infinite;  
+    }  
+  
+    @keyframes sway {  
+      0%, 100% { transform: rotate(-1.5deg); }  
+      50%       { transform: rotate(1.5deg); }  
+    }  
+  
+    .petal {  
+      position: absolute;  
+      width: 110px;  
+      height: 175px;  
+      top: 50%;  
+      left: 50%;  
+      margin-left: -55px;  
+      margin-top: -160px;  
+      transform-origin: 50% 100%;  
+      border-radius: 48% 52% 38% 62% / 62% 58% 42% 38%;  
+      background: radial-gradient(ellipse 55% 90% at 50% 95%,  
+        rgba(180,20,0,0.95) 0%,  
+        rgba(220,60,0,0.85) 30%,  
+        rgba(255,100,20,0.70) 65%,  
+        rgba(255,160,60,0.40) 100%  
+      );  
+      opacity: 0;  
+      filter: drop-shadow(0 2px 8px rgba(200,40,0,0.35));  
+      animation: bloom 1s ease-out forwards;  
+    }  
+  
+    .petal::before {  
+      content: '';  
+      position: absolute;  
+      bottom: 8px;  
+      left: 50%;  
+      transform: translateX(-50%);  
+      width: 1.5px;  
+      height: 78%;  
+      background: linear-gradient(to top, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.10) 100%);  
+      border-radius: 2px;  
+    }  
+  
+    .petal::after {  
+      content: '';  
+      position: absolute;  
+      bottom: 15%;  
+      left: 50%;  
+      transform: translateX(-50%);  
+      width: 90%;  
+      height: 60%;  
+      background:  
+        repeating-linear-gradient(85deg, transparent 0px, transparent 12px, rgba(255,255,255,0.06) 12px, rgba(255,255,255,0.06) 13px),  
+        repeating-linear-gradient(95deg, transparent 0px, transparent 12px, rgba(255,255,255,0.06) 12px, rgba(255,255,255,0.06) 13px);  
+      border-radius: 50%;  
+    }  
+  
+    .petal:nth-child(1) {  
+      transform: rotate(0deg);  
+      background: radial-gradient(ellipse 55% 90% at 50% 95%, #7a0000 0%, #cc3300 30%, #ff6614 65%, #ffaa44 100%);  
+      animation-delay: 0.00s;  
+      --r: 0deg;  
+    }  
+    .petal:nth-child(2) {  
+      transform: rotate(72deg);  
+      background: radial-gradient(ellipse 55% 90% at 50% 95%, #8b0000 0%, #d42000 30%, #ff5500 65%, #ff9933 100%);  
+      animation-delay: 0.10s;  
+      --r: 72deg;  
+    }  
+    .petal:nth-child(3) {  
+      transform: rotate(144deg);  
+      background: radial-gradient(ellipse 55% 90% at 50% 95%, #6e0000 0%, #c42b00 30%, #ff6600 65%, #ffb347 100%);  
+      animation-delay: 0.20s;  
+      --r: 144deg;  
+    }  
+    .petal:nth-child(4) {  
+      transform: rotate(216deg);  
+      background: radial-gradient(ellipse 55% 90% at 50% 95%, #800000 0%, #cc2200 30%, #ff5511 65%, #ff9922 100%);  
+      animation-delay: 0.30s;  
+      --r: 216deg;  
+    }  
+    .petal:nth-child(5) {  
+      transform: rotate(288deg);  
+      background: radial-gradient(ellipse 55% 90% at 50% 95%, #750000 0%, #bf2000 30%, #ff6000 65%, #ffaa33 100%);  
+      animation-delay: 0.40s;  
+      --r: 288deg;  
+    }  
+  
+    @keyframes bloom {  
+      from {  
+        opacity: 0;  
+        transform: rotate(var(--r, 0deg)) scale(0.2) translateY(30px);  
+      }  
+      60% { opacity: 0.85; }  
+      to  { opacity: 1; transform: rotate(var(--r, 0deg)) scale(1); }  
+    }  
+  
+    .center {  
+      position: absolute;  
+      top: 50%;  
+      left: 50%;  
+      transform: translate(-50%, -50%);  
+      width: 56px;  
+      height: 56px;  
+      background: radial-gradient(circle at 45% 40%, #3a0000 0%, #1a0000 55%, #000000 100%);  
+      border-radius: 50%;  
+      z-index: 6;  
+      box-shadow:  
+        0 0 0 3px rgba(120,10,0,0.6),  
+        0 0 18px rgba(200,40,0,0.5),  
+        inset 0 2px 8px rgba(0,0,0,0.9);  
+    }  
+  
+    .stamen {  
+      position: absolute;  
+      top: 50%;  
+      left: 50%;  
+      transform: translate(-50%, -72%);  
+      width: 7px;  
+      height: 88px;  
+      background: linear-gradient(to top, #cc3300 0%, #ff6600 40%, #ffcc44 100%);  
+      border-radius: 4px;  
+      z-index: 10;  
+      box-shadow: 0 0 8px rgba(255,120,0,0.5);  
+    }  
+  
+    .stamen::before {  
+      content: '';  
+      position: absolute;  
+      top: -10px;  
+      left: 50%;  
+      transform: translateX(-50%);  
+      width: 16px;  
+      height: 16px;  
+      background: radial-gradient(circle at 40% 35%, #fff8b0, #ffd600 60%, #cc8800);  
+      border-radius: 50%;  
+      box-shadow: 0 0 10px rgba(255,210,0,0.9);  
+    }  
+  
+    .stamen::after {  
+      content: '';  
+      position: absolute;  
+      top: -22px;  
+      left: 50%;  
+      transform: translateX(-50%);  
+      width: 5px;  
+      height: 5px;  
+      background: #ffee58;  
+      border-radius: 50%;  
+      box-shadow:  
+         9px  4px 0 1.5px #ffd740,  
+        -9px  4px 0 1.5px #ffd740,  
+        13px -3px 0 1.5px #ffee58,  
+       -13px -3px 0 1.5px #ffee58,  
+          0px -11px 0 1.5px #fff176,  
+         5px -10px 0 1px   #ffc107,  
+        -5px -10px 0 1px   #ffc107;  
+    }  
+  </style>  
+</head>  
+<body>  
+  <div class="hibiskus">  
+    <div class="petal"></div>  
+    <div class="petal"></div>  
+    <div class="petal"></div>  
+    <div class="petal"></div>  
+    <div class="petal"></div>  
+    <div class="center"></div>  
+    <div class="stamen"></div>  
+  </div>  
+</body>  
+</html>  
